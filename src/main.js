@@ -1,5 +1,96 @@
 import './style.css';
 
+// ===== LANDING OVERLAY =====
+(function () {
+    const overlay = document.getElementById('landingOverlay');
+    if (!overlay) return;
+
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    const msgEl = document.getElementById('landingMessage');
+
+    const messages = [
+        "Nice try! 😂",
+        "Nope!",
+        "Not happening!",
+        "Just press Yes already!",
+        "You can't escape it! 🤣",
+        "Still trying?",
+        "Give up!",
+        "YES is the only option!",
+        "Seriously? 😂",
+        "Accept your fate!",
+    ];
+
+    let attempts = 0;
+
+    function moveNoButton() {
+        attempts++;
+
+        // Make it fixed position so it can fly around the viewport
+        if (!btnNo.classList.contains('runaway')) {
+            btnNo.classList.add('runaway');
+        }
+
+        const pad = 20;
+        const btnW = btnNo.offsetWidth;
+        const btnH = btnNo.offsetHeight;
+        const maxX = window.innerWidth - btnW - pad;
+        const maxY = window.innerHeight - btnH - pad;
+
+        // Random position (avoid being too close to current spot)
+        let newX, newY;
+        const curX = parseFloat(btnNo.style.left) || 0;
+        const curY = parseFloat(btnNo.style.top) || 0;
+        do {
+            newX = pad + Math.random() * (maxX - pad);
+            newY = pad + Math.random() * (maxY - pad);
+        } while (
+            Math.abs(newX - curX) < 120 && Math.abs(newY - curY) < 120
+        );
+
+        btnNo.style.left = newX + 'px';
+        btnNo.style.top = newY + 'px';
+
+        // Shrink after several attempts
+        if (attempts > 4) {
+            const scale = Math.max(0.4, 1 - (attempts - 4) * 0.1);
+            btnNo.style.transform = `scale(${scale})`;
+        }
+
+        // Show funny message
+        msgEl.textContent = messages[(attempts - 1) % messages.length];
+    }
+
+    // Desktop: mouseenter
+    btnNo.addEventListener('mouseenter', moveNoButton);
+
+    // Mobile: touchstart (fires before click, so we prevent default)
+    btnNo.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        moveNoButton();
+    }, { passive: false });
+
+    // YES → reveal the real site
+    btnYes.addEventListener('click', () => {
+        // Fade out the overlay
+        overlay.classList.add('fade-out');
+
+        // Swap to real title + favicon
+        document.title = 'Aryan Arora Birthday GP 2026 | The Ultimate F1 Celebration';
+        const favicon = document.getElementById('favicon');
+        if (favicon) {
+            favicon.href = "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏎️</text></svg>";
+        }
+
+        // Remove overlay after animation
+        setTimeout(() => {
+            overlay.remove();
+        }, 800);
+    });
+})();
+
+
 // ===== COUNTDOWN TIMER =====
 const BIRTHDAY = new Date('2026-02-26T00:00:00+05:30');
 

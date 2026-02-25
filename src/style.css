@@ -71,6 +71,198 @@ a {
 }
 
 
+/* ===== LANDING OVERLAY ===== */
+.landing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.landing-overlay::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: conic-gradient(from 0deg,
+      rgba(225, 6, 0, 0.08),
+      rgba(30, 65, 255, 0.08),
+      rgba(255, 201, 6, 0.06),
+      rgba(225, 6, 0, 0.08));
+  animation: rotateBg 20s linear infinite;
+}
+
+.landing-bg-text {
+  position: absolute;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: clamp(20rem, 50vw, 40rem);
+  color: rgba(255, 255, 255, 0.015);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.landing-card {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 48px 32px;
+  max-width: 500px;
+  width: 90%;
+}
+
+.landing-emoji {
+  font-size: 5rem;
+  margin-bottom: 24px;
+  animation: bounce 2s ease infinite;
+  line-height: 1;
+}
+
+.landing-subtitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.landing-question {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 40px;
+  line-height: 1.3;
+}
+
+.landing-highlight {
+  background: linear-gradient(135deg, var(--f1-red), #FF4136);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.landing-buttons {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  min-height: 70px;
+}
+
+.btn-yes {
+  padding: 16px 48px;
+  background: linear-gradient(135deg, #22cc44, #1aaf38);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 3px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(34, 204, 68, 0.3);
+}
+
+.btn-yes:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 30px rgba(34, 204, 68, 0.5);
+}
+
+.btn-yes:active {
+  transform: scale(0.96);
+}
+
+.btn-no {
+  padding: 16px 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  cursor: pointer;
+  letter-spacing: 3px;
+  transition: all 0.15s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn-no.runaway {
+  position: fixed;
+  z-index: 10001;
+}
+
+.landing-message {
+  margin-top: 24px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--rb-yellow);
+  min-height: 24px;
+  transition: opacity 0.2s ease;
+}
+
+.landing-overlay.fade-out {
+  animation: fadeOutOverlay 0.8s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes rotateBg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes floatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes fadeOutOverlay {
+  to {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
 /* ===== NAVIGATION ===== */
 .f1-nav {
   position: fixed;
@@ -1266,5 +1458,37 @@ a {
   .hero-tag {
     font-size: 0.65rem;
     letter-spacing: 2px;
+  }
+
+  .landing-emoji {
+    font-size: 3.5rem;
+  }
+
+  .landing-question {
+    font-size: 1.5rem;
+    margin-bottom: 28px;
+  }
+
+  .btn-yes,
+  .btn-no {
+    padding: 14px 32px;
+    font-size: 0.9rem;
+  }
+
+  .landing-subtitle {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+  }
+
+  .pitwall-body {
+    padding: 16px 18px;
+  }
+
+  .pitwall-header {
+    padding: 10px 18px;
+  }
+
+  .pitwall-label {
+    font-size: 0.5rem;
   }
 }
