@@ -14,6 +14,11 @@ function updateCountdown() {
         if (msg) {
             msg.classList.add('active');
         }
+        // Unlock the NEW DRIVER nav link and DRS zone
+        const navLink = document.getElementById('navNewDriver');
+        const drsZone = document.getElementById('drsZone');
+        if (navLink) navLink.classList.remove('locked');
+        if (drsZone) drsZone.classList.remove('locked');
         return;
     }
 

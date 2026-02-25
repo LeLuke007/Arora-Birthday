@@ -27,7 +27,7 @@
       </a>
       <div class="nav-links">
         <a href="/">HOME</a>
-        <a href="/driver.html">NEW DRIVER</a>
+        <a href="/driver.html" id="navNewDriver" class="locked">NEW DRIVER</a>
       </div>
     </div>
   </nav>
@@ -69,12 +69,25 @@
 
       <!-- Birthday message (hidden until birthday) -->
       <div class="birthday-message" id="birthdayMessage">
-        <div class="birthday-lights">
-          <span class="b-light"></span><span class="b-light"></span><span class="b-light"></span><span
-            class="b-light"></span><span class="b-light"></span>
+        <h2 class="lap-completed-title">LAP 22 COMPLETED</h2>
+        <div class="pitwall-box">
+          <div class="pitwall-header">
+            <span class="pitwall-dot"></span>
+            <span class="pitwall-label">SECURE CHANNEL // PIT WALL COMMUNICATIONS</span>
+          </div>
+          <div class="pitwall-body">
+            <div class="pitwall-msg">
+              <span class="pitwall-sender gp">GP:</span>
+              <span class="pitwall-text">"Okay Aryan, that is Lap 22 complete. P1. Happy Birthday, mate. A genuinely
+                championship-winning year. Enjoy the celebrations."</span>
+            </div>
+            <div class="pitwall-msg">
+              <span class="pitwall-sender aryan">ARYAN:</span>
+              <span class="pitwall-text">"Haha, yes boys! Simply lovely! The setup was perfect today. Let's get the
+                drinks in!"</span>
+            </div>
+          </div>
         </div>
-        <h2 class="birthday-text">LIGHTS OUT AND AWAY WE GO!</h2>
-        <p class="birthday-sub">🏆 HAPPY BIRTHDAY ARYAN! 🏆</p>
       </div>
     </div>
     <div class="racing-stripes"></div>
@@ -108,7 +121,7 @@
   </section>
 
   <!-- DRS Zone / Call to Action -->
-  <section class="drs-zone">
+  <section class="drs-zone locked" id="drsZone">
     <div class="drs-container">
       <!-- Starting Lights -->
       <div class="starting-lights">
